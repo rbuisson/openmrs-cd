@@ -75,7 +75,7 @@ if (process.env[config.varArtifactsChanges()] === "true") {
 // 'deployment'
 
 if (process.env[config.varDeploymentChanges()] === "true") {
-  var deploymentScripts = scripts[instanceDef.deployment.type];
+  const deploymentScripts = require("./impl/" + instanceDef.deployment.type);
   script.body.push(
     scripts.remote(
       ssh,

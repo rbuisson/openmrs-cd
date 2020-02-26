@@ -258,8 +258,8 @@ describe("Scripts", function() {
       docker.ifExists(
         "sanpedro-dev",
         "set -e\n" +
-        "cd /opt/bahmni-docker/sanpedro-dev\n"  +
-        "docker-compose restart\n"
+          "cd /opt/bahmni-docker/sanpedro-dev\n" +
+          "docker-compose restart\n"
       )
     );
   });
@@ -280,8 +280,8 @@ describe("Scripts", function() {
       docker.ifExists(
         "sanpedro-dev",
         "set -e\n" +
-        "cd /opt/bahmni-docker/sanpedro-dev\n" +
-        "docker-compose down\n"
+          "cd /opt/bahmni-docker/sanpedro-dev\n" +
+          "docker-compose down\n"
       )
     );
   });

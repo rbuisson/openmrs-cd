@@ -56,7 +56,7 @@ if (process.env[config.varArtifactsChanges()] === "true") {
 }
 
 // 'deployment'
-var container = scripts[instanceDef.deployment.type];
+const container = require("./impl/" + instanceDef.deployment.type);
 
 if (process.env[config.varDeploymentChanges()] === "true") {
   script.body.push(scripts.remote(ssh, container.remove(instanceDef.uuid)));

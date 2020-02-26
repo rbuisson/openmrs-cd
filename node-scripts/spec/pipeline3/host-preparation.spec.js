@@ -83,7 +83,12 @@ describe("Host preparation scripts", function() {
       path.resolve(config.getBuildDirPath(), config.getHostPrepareScriptName()),
       "utf8"
     );
-    var deploymentScripts = scripts[instanceDef.deployment.type];
+    const deploymentScripts = require(path.resolve(
+      "src/" +
+        config.getJobNameForPipeline3() +
+        "/impl/" +
+        instanceDef.deployment.type
+    ));
     expect(script).toContain(
       deploymentScripts.prepareDeployment(
         instanceDef.deployment,
