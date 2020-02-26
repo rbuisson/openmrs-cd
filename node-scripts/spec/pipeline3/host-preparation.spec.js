@@ -65,7 +65,7 @@ describe("Host preparation scripts", function() {
     expect(script).toContain(scripts.rsync(ssh, srcDir, hostArtifactsDir));
   });
 
-  it("should generate bash script upon deployment changes.", function() {
+  fit("should generate bash script upon deployment changes.", function() {
     process.env[config.varInstanceUuid()] = instanceUuid;
     process.env[config.varDeploymentChanges()] = "true";
     var instanceDef = db.getInstanceDefinition(instanceUuid);
@@ -83,10 +83,13 @@ describe("Host preparation scripts", function() {
       path.resolve(config.getBuildDirPath(), config.getHostPrepareScriptName()),
       "utf8"
     );
+    var deploymentScripts = scripts[instanceDef.deployment.type];
     expect(script).toContain(
-      "docker pull mekomsolutions/bahmni:cambodia-release-0.90"
+      deploymentScripts.prepareDeployment(
+        instanceDef.deployment,
+        instanceDef.name
+      )
     );
-
     // ensure proxies have been setup
     var proxy = instanceDef.deployment.proxies[0];
     expect(script).toContain(
